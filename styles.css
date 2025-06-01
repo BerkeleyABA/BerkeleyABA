@@ -1,0 +1,1503 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;600;700;900&display=swap');
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Avenir Next', Avenir, 'Segoe UI', 'Arial', sans-serif;
+    line-height: 1.5;
+    color: white;
+    background-color: #262626;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', Arial, sans-serif;
+}
+
+/* Navigation */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background-color: #414141;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    width: 100%;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 60px;
+    width: auto;
+}
+
+.nav-links {
+    /* Removed full-screen overlay styles */
+    /* position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: #222; */
+    display: flex;
+    flex-direction: column; /* Default to column for mobile */
+    /* justify-content: center;
+    align-items: center; */
+    /* transform: translateY(-100%); */
+    transition: max-height 0.3s ease-in-out; /* Transition max-height */
+    /* z-index: 1000;
+    visibility: hidden; */
+
+    /* Hidden by default on mobile */
+    max-height: 0;
+    overflow: hidden;
+    background: #222; /* Background for the dropdown */
+}
+
+.nav-links.open {
+    /* Visible when open */
+    max-height: 500px; /* Or a value large enough to contain all links */
+    /* visibility: visible; */
+}
+
+/* Removed .nav-links.active */
+/* .nav-links.active {
+    transform: translateY(0);
+    visibility: visible;
+} */
+
+.nav-links a {
+    color: #fff;
+    font-size: 1.5rem; /* Slightly smaller font for dropdown */
+    margin: 0.75rem 1rem; /* Adjust spacing */
+    text-decoration: none;
+    text-align: center; /* Center links in dropdown */
+}
+
+.apply-btn {
+    color: white !important;
+    border-radius: 5px;
+    padding: 0;
+}
+
+.apply-btn:hover {
+    color: #0066cc !important;
+}
+
+.hamburger {
+    display: block; /* Visible on mobile */
+    cursor: pointer;
+    z-index: 10; /* Adjust z-index */
+}
+
+/* Hide hamburger and style nav-links for desktop */
+@media (min-width: 768px) {
+    .hamburger {
+        display: none; /* Hidden on desktop */
+    }
+    .nav-links {
+        position: static;
+        height: auto;
+        width: auto;
+        background: none; /* No background on desktop */
+        flex-direction: row; /* Horizontal on desktop */
+        transform: none;
+        display: flex;
+        align-items: center;
+        visibility: visible; /* Ensure visibility on desktop */
+        max-height: none; /* Remove max-height constraint */
+        overflow: visible; /* Remove overflow hidden */
+    }
+    .nav-links a {
+        font-size: 1rem; /* Desktop font size */
+        margin: 0 1rem; /* Desktop spacing */
+        text-align: left; /* Align left on desktop */
+        color: white; /* Ensure correct color */
+        font-weight: 300;
+        font-family: 'Montserrat', Arial, sans-serif;
+        transition: color 0.3s ease;
+    }
+    .nav-links a:hover {
+        color: #0066cc;
+    }
+    /* Removed .close-btn desktop hide rule */
+    /* .close-btn {
+        display: none;
+    } */
+}
+
+/* Removed .close-btn styles */
+/* .close-btn {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-size: 2.5rem;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+} */
+
+/* Adjust hamburger display on mobile */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block !important;
+        z-index: 100; /* Ensure it's clickable */
+        width: 25px; /* Ensure explicit width */
+        height: 20px; /* Give it a reasonable height */
+        visibility: visible !important; /* Ensure visibility */
+        position: relative; /* Give it a positioning context if needed */
+    }
+    .hamburger span {
+        display: block; /* Ensure spans inside are block elements */
+        width: 100%; /* Spans take full width of hamburger */
+        height: 3px; /* Height of each bar */
+        background-color: white; /* Color of the bars */
+        margin-bottom: 4px; /* Spacing between bars */
+        transition: all 0.3s ease;
+    }
+    .hamburger span:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Mobile navigation dropdown positioning */
+    .nav-links {
+        position: absolute; /* Position below the header */
+        top: 105px; /* Adjust based on your header height */
+        left: 0;
+        width: 100%;
+        /* Background and max-height/overflow for dropdown */
+        background: #222; /* Background for the dropdown */
+        flex-direction: column; /* Stack links vertically */
+        max-height: 0; /* Hidden by default */
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+        z-index: 10; /* Ensure it's above content */
+    }
+
+    .nav-links.open {
+        max-height: 500px; /* Visible when open (adjust if needed) */
+    }
+
+    .nav-links a {
+         font-size: 1.5rem; /* Slightly smaller font for dropdown */
+         margin: 0.75rem 1rem; /* Adjust spacing */
+         text-align: center; /* Center links in dropdown */
+         color: #fff; /* Ensure color is white */
+         text-decoration: none;
+     }
+}
+
+/* Hero Section */
+#hero {
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/home-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 40px 1rem 0 1rem;
+}
+
+#hero h1 {
+    font-size: 3.5rem;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+#hero h2 {
+    font-size: 1.5rem;
+    font-weight: normal;
+    text-align: center;
+}
+
+/* Who We Are Section */
+#who-we-are {
+    padding: 2rem 10%;
+    margin-bottom: 2rem;
+    background-color: #262626;
+}
+
+#who-we-are h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    font-family: 'Avenir Next', Avenir, 'Segoe UI', 'Arial', sans-serif;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+.content {
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+}
+
+.text {
+    flex: 1;
+}
+
+.text p {
+    font-size: 1.1rem;
+    line-height: 2;
+    font-family: 'Avenir Next', Avenir, 'Segoe UI', 'Arial', sans-serif;
+    font-weight: 350;
+}
+
+.image {
+    flex: 1;
+}
+
+.image img {
+    width: 100%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* What We Offer Section */
+#what-we-offer {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    background-color: #3c3c3c;
+}
+
+#what-we-offer h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    font-family: 'Avenir Next', Avenir, 'Segoe UI', 'Arial', sans-serif;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: white;
+    margin-bottom: 3rem;
+    font-family: 'Avenir Next', Avenir, 'Segoe UI', 'Arial', sans-serif;
+    font-weight: 300;
+}
+
+.offerings {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.offering-card {
+    background: #262626;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.offering-card:hover {
+    transform: translateY(-10px);
+}
+
+.offering-card img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+}
+
+.offering-card h3 {
+    padding: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: white;
+}
+
+/* Footer */
+footer {
+    background-color: #999997;
+    color: white;
+    padding: 1.5rem 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.disclaimer {
+    flex: 0 0 70%;
+    text-align: left;
+    font-size: 0.9rem;
+    color: white;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 100;
+    padding-right: 2rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 2rem;
+    margin-left: auto;
+}
+
+.social-links a {
+    color: white;
+    font-size: 2.25rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #0066cc;
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+    footer {
+        flex-direction: column; /* Stack disclaimer and social links vertically */
+        padding: 1.5rem 5%; /* Adjust padding for smaller screens */
+        text-align: center; /* Center align content */
+    }
+
+    .disclaimer {
+        flex: none; /* Remove flex basis */
+        width: 100%; /* Allow disclaimer to take full width */
+        padding-right: 0; /* Remove right padding */
+        margin-bottom: 1rem; /* Add space below disclaimer */
+        text-align: center; /* Center text on mobile */
+    }
+
+    .social-links {
+        margin-left: 0; /* Remove auto margin */
+        justify-content: center; /* Center social icons */
+        gap: 1.5rem; /* Adjust gap for mobile */
+    }
+
+    .social-links a {
+        font-size: 2rem; /* Slightly smaller icons on mobile */
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .content {
+        flex-direction: column;
+    }
+
+    #hero h1 {
+        font-size: 3rem;
+    }
+
+    #hero h2 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .offerings {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 900px) {
+    .offerings {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Client Logos Section */
+#clients {
+    padding: 3rem 10%;
+    background-color: #cfc8c0;
+}
+
+#clients h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    font-family: 'Avenir Next', Avenir, 'Segoe UI', 'Arial', sans-serif;
+    font-weight: 400;
+}
+
+.client-logos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
+    align-items: center;
+    justify-items: center;
+    margin-top: 2rem;
+}
+
+.client-logos img {
+    max-width: 150px;
+    max-height: 80px;
+    width: auto;
+    height: auto;
+    /* filter: brightness(0) invert(1); */
+    transition: opacity 0.3s ease;
+}
+
+.client-logos img:hover {
+    opacity: 1;
+}
+
+/* Testimonials Section */
+#testimonials {
+    padding: 3rem 10%;
+    background-color: #262626;
+}
+
+#testimonials h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    font-family: 'Avenir Next', Avenir, 'Segoe UI', 'Arial', sans-serif;
+    font-weight: 400;
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.testimonial-card {
+    background: #333;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.testimonial-card .quote {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: #ccc;
+}
+
+.testimonial-card .author {
+    border-top: 1px solid #444;
+    padding-top: 1rem;
+}
+
+.testimonial-card .name {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.testimonial-card .title {
+    font-size: 0.9rem;
+    color: #999;
+}
+
+#aba-advantage {
+    margin-left: 8vw;
+    margin-right: 8vw;
+    padding: 3rem 10%;
+    background-color: #262626;
+}
+
+#aba-advantage .content {
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+}
+
+#aba-advantage h2 {
+    text-align: left;
+    margin-bottom: 0rem;
+    font-size: 2.5rem;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 300;
+    line-height: 1.1;
+}
+
+#aba-advantage .text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    /* No height constraint */
+}
+
+#aba-advantage .text p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    font-family: 'Avenir Next', Avenir, 'Segoe UI', 'Arial', sans-serif;
+    font-weight: 350;
+    text-align: left;
+}
+
+#aba-advantage .image {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#aba-advantage .image img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    object-fit: cover;
+}
+
+.what-we-offer-box {
+    background: #3c3c3c;
+    padding: 3rem 2rem 2.5rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#what-we-offer {
+    background: none;
+}
+
+#teams-hero h1 {
+    font-size: 3rem;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+}
+
+
+#leadership h2, #coffee-chat h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    font-family: 'Avenir Next', Avenir, 'Segoe UI', 'Arial', sans-serif;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+#leadership {
+    padding: 2rem 10%;
+}
+
+.team-section {
+    background: #333;
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.team-section h3 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.team-section p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #eee;
+    font-family: 'Avenir Next', Avenir, 'Segoe UI', 'Arial', sans-serif;
+    font-weight: 350;
+    margin: 0;
+}
+
+#coffee-chat {
+    padding: 2rem 10%;
+}
+
+#leadership, #leadership h2, .team-section, .team-section h3, .team-section p, #coffee-chat, #coffee-chat h2 {
+    text-align: center;
+}
+
+.teams-hero {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/teams-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding-top: 180px;
+}
+
+.teams-hero h2 {
+    font-size: 3.5rem;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 300;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.contact-hero {
+    height: 55vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/officers.JPG');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding-top: 100px;
+}
+
+.contact-hero h1 {
+    font-size: 3rem;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+}
+
+.contact-hero h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    font-family: 'Avenir Next', Avenir, 'Segoe UI', 'Arial', sans-serif;
+    font-weight: 400;
+    margin-top: 0;
+}
+
+.contact-table-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 10%;
+}
+
+.contact-table {
+    width: 100%;
+    max-width: 800px;
+    border-collapse: collapse;
+    background: #333;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    margin-top: 0;
+}
+
+.contact-table th, .contact-table td {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    color: #fff;
+}
+
+.contact-table th {
+    background: #262626;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 400;
+    font-size: 1.1rem;
+    border-bottom: 2px solid #444;
+}
+
+.contact-table td {
+    font-family: 'Avenir Next', Avenir, 'Segoe UI', 'Arial', sans-serif;
+    font-weight: 350;
+    font-size: 1rem;
+    border-bottom: 1px solid #444;
+}
+
+.contact-table tr:last-child td {
+    border-bottom: none;
+}
+
+@media (max-width: 600px) {
+    .contact-table-section {
+        padding: 2rem 0.5rem;
+    }
+    .contact-table th, .contact-table td {
+        padding: 0.7rem 0.5rem;
+        font-size: 0.95rem;
+    }
+}
+
+.contact-subheading {
+    font-size: 2.5rem;
+    text-align: center;
+    font-family: 'Avenir Next', Avenir, 'Segoe UI', 'Arial', sans-serif;
+    font-weight: 400;
+    margin-bottom: 3.5rem;
+}
+
+/* --- PROFDEV CARDS FIT HORIZONTALLY --- */
+.profdev-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 1.2rem;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    padding: 0 1.75rem;
+}
+.profdev-card {
+    background: #3c3c3c;
+    border-radius: 10px;
+    padding: 1.1rem 0.7rem 1rem 0.7rem;
+    min-width: 140px;
+    max-width: 160px;
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.profdev-card img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 0.7rem;
+}
+.profdev-title {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+    color: #fff;
+}
+.profdev-desc {
+    font-size: 0.85rem;
+    color: #ccc;
+    font-family: 'Avenir Next', Avenir, 'Segoe UI', 'Arial', sans-serif;
+}
+@media (max-width: 900px) {
+    .profdev-grid {
+        gap: 0.5rem;
+    }
+    .profdev-card {
+        min-width: 90px;
+        max-width: 110px;
+        padding: 0.5rem 0.2rem 0.5rem 0.2rem;
+    }
+    .profdev-card img {
+        width: 28px;
+        height: 28px;
+    }
+    .profdev-title {
+        font-size: 0.7rem;
+    }
+    .profdev-desc {
+        font-size: 0.7rem;
+    }
+}
+
+.contact-social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.contact-social-icons a {
+    color: white;
+    font-size: 4.2rem;
+    transition: color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    line-height: 1;
+    margin: 0 3rem 0 0;
+    padding: 0;
+}
+
+.contact-social-icons a:last-child {
+    margin-right: 0;
+}
+
+.contact-social-icons a:hover {
+    color: #0066cc;
+}
+
+.contact-heading {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.contact-heading h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    font-family: 'Avenir Next', Avenir, 'Segoe UI', 'Arial', sans-serif;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+/* === ABOUT PAGE STYLES === */
+
+/* General Section Styles */
+.about-mission, .about-values, .about-profdev, .about-community {
+    background: #222;
+    color: #fff;
+    padding: 3rem 10% 2.5rem 10%;
+    margin-bottom: 2.5rem;
+    border-radius: 0;
+}
+
+.about-mission h1,
+.about-values h1,
+.about-profdev h1,
+.about-community h1 {
+    font-family: 'Avenir Next', Avenir, 'Segoe UI', 'Arial', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.about-mission p {
+    font-size: 1.25rem;
+    color: #e0e0e0;
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* === VALUES SECTION === */
+.values-row {
+    display: flex;
+    flex-direction: row;
+    gap: 2.5rem;
+    justify-content: center;
+    align-items: stretch;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.value-card {
+    background: #292929;
+    border: 1px solid #333;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 2rem 1.2rem 1.5rem 1.2rem;
+    min-width: 200px;
+    max-width: 240px;
+    flex: 1 1 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-radius: 0;
+}
+
+.value-card img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1rem;
+}
+
+.value-hashtag {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 700;
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.value-title {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 400;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+    text-transform: uppercase;
+    font-style: italic;
+}
+
+.value-desc {
+    font-size: 1rem;
+    color: #e0e0e0;
+    font-family: 'Avenir Next', Avenir, 'Segoe UI', 'Arial', sans-serif;
+    line-height: 1.6;
+}
+
+/* === PROFESSIONAL DEVELOPMENT === */
+.about-profdev h1, .about-profdev h2 {
+    font-family: 'Avenir Next', Avenir, 'Segoe UI', 'Arial', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 1.2rem;
+}
+
+.profdev-desc p, .profdev-projects-desc p {
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+    text-align: center;
+}
+
+.profdev-subheading {
+    font-size: 1.5rem;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.profdev-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+}
+
+.profdev-card {
+    background: #292929;
+    border: 1px solid #333;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 1.5rem 1rem;
+    min-width: 180px;
+    max-width: 220px;
+    flex: 1 1 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-radius: 0;
+}
+
+.profdev-card img {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0.7rem;
+}
+
+.profdev-title {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.profdev-desc {
+    font-size: 0.98rem;
+    color: #e0e0e0;
+    font-family: 'Avenir Next', Avenir, 'Segoe UI', 'Arial', sans-serif;
+    line-height: 1.6;
+}
+
+/* === COMMUNITY SECTION === */
+.about-community {
+    margin-left: 8vw;
+    margin-right: 8vw;
+    text-align: center;
+    background: #222;
+    padding-bottom: 3rem;
+}
+
+.community-img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 0;
+    margin-bottom: 1.2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.community-desc {
+    font-size: 1.2rem;
+    color: #fff;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 700;
+    margin-top: 1rem;
+    text-transform: uppercase;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+    .values-row, .profdev-grid {
+        gap: 1rem;
+    }
+    .value-card, .profdev-card {
+        min-width: 140px;
+        max-width: 180px;
+        padding: 1rem 0.5rem;
+    }
+    .about-mission, .about-values, .about-profdev, .about-community {
+        padding: 2rem 2% 1.5rem 2%;
+    }
+}
+
+@media (max-width: 600px) {
+    .values-row, .profdev-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    .about-mission h1,
+    .about-values h1,
+    .about-profdev h1,
+    .about-community h1 {
+        font-size: 2rem;
+        text-align: center;
+    }
+}
+
+.about-hero {
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/about-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    margin-bottom: 0;
+    padding-top: 230px;
+}
+
+.about-hero h1 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.about-mission-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-mission-image {
+    flex: 1 1 350px;
+    min-width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-mission-image img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.about-mission-text {
+    flex: 2 1 400px;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.about-mission-text h1 {
+    text-align: center;
+    width: 100%;
+}
+
+@media (max-width: 900px) {
+    .about-mission-content {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .about-mission-image img {
+        max-width: 100%;
+    }
+}
+
+.community-family-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 3rem auto 0 auto;
+}
+
+.community-family-text {
+    flex: 2 1 400px;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.community-family-text h2 {
+    font-family: 'Avenir Next', Avenir, 'Segoe UI', 'Arial', sans-serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.community-family-text p {
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    line-height: 1.7;
+    text-align: left;
+}
+
+.community-family-image {
+    flex: 1 1 350px;
+    min-width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.community-family-image img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 900px) {
+    .community-family-section {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .community-family-image img {
+        max-width: 100%;
+    }
+    .community-family-text h2, .community-family-text p {
+        text-align: center;
+    }
+}
+
+.community-carousel {
+    position: relative;
+    max-width: 900px;
+    margin: 2.5rem auto 0 auto;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    background: #222;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(.77,0,.18,1);
+    will-change: transform;
+}
+.community-carousel img {
+    width: 100%;
+    flex-shrink: 0;
+    object-fit: cover;
+    max-height: 350px;
+    border-radius: 0;
+    background: #111;
+}
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    border: none;
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    z-index: 2;
+    border-radius: 0.25rem;
+    transition: background 0.2s;
+}
+.carousel-btn.prev { left: 10px; }
+.carousel-btn.next { right: 10px; }
+.carousel-btn:hover { background: rgba(0,0,0,0.8); }
+
+@media (max-width: 900px) {
+    .community-carousel {
+        max-width: 100%;
+    }
+    .community-carousel img {
+        max-height: 220px;
+    }
+}
+@media (max-width: 700px) {
+    .community-carousel {
+        max-width: 100vw;
+    }
+    .carousel-track img {
+        max-height: 140px;
+    }
+}
+
+.community-video {
+    margin: 2.5rem auto 0 auto;
+    max-width: 900px;
+    display: flex;
+    justify-content: center;
+}
+
+.video-responsive {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+}
+
+.video-responsive iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* === APPLY PAGE STYLES === */
+
+/* Hero Section */
+.apply-hero {
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/apply-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    margin-bottom: 0;
+    padding-top: 190px;
+}
+.apply-hero h1 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+/* Timeline Section */
+.apply-timeline-section {
+    background: #222;
+    color: #fff;
+    padding: 3rem 10% 2.5rem 10%;
+    margin-bottom: 2.5rem;
+    border-radius: 0;
+}
+.apply-timeline-section h2 {
+    font-family: 'Avenir Next', Avenir, 'Segoe UI', 'Arial', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    color: #fff;
+    letter-spacing: 1px;
+}
+.apply-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.apply-event {
+    background: #292929;
+    border: 1px solid #333;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    z-index: 1;
+}
+.apply-event-title {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+.apply-event-date {
+    font-family: 'Avenir Next', Avenir, 'Segoe UI', 'Arial', sans-serif;
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+.apply-event-desc {
+    font-size: 1rem;
+    color: #e0e0e0;
+    font-family: 'Avenir Next', Avenir, 'Segoe UI', 'Arial', sans-serif;
+    line-height: 1.6;
+}
+
+/* CTA Section */
+.apply-cta-section {
+    background: #292929;
+    color: #fff;
+    padding: 3rem 10% 2.5rem 10%;
+    text-align: center;
+    border-radius: 0;
+    margin-bottom: 2.5rem;
+}
+.apply-cta-section h2 {
+    font-family: 'Avenir Next', Avenir, 'Segoe UI', 'Arial', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    color: #fff;
+}
+.apply-cta-section p {
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+}
+.apply-btn-main {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background-color: #B3A89A;
+    color: #222;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-top: 1rem;
+    border: none;
+}
+.apply-btn-main:hover {
+    background-color: #a3937a;
+    color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .apply-timeline-section, .apply-cta-section {
+        padding: 2rem 2% 1.5rem 2%;
+    }
+    .apply-timeline {
+        gap: 1.2rem;
+    }
+    .apply-event {
+        padding: 1.2rem 0.7rem 1rem 0.7rem;
+    }
+}
+@media (max-width: 600px) {
+    .apply-hero h1 {
+        font-size: 2.2rem;
+    }
+    .apply-timeline-section h2, .apply-cta-section h2 {
+        font-size: 1.5rem;
+    }
+    .apply-event {
+        padding: 1.2rem 0.7rem 1rem 0.7rem;
+    }
+}
+
+/* Careers Hero Section */
+.careers-hero {
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/careers-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    margin-bottom: 0;
+}
+
+.careers-hero h1 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.home-hero {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/home-hero.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.about-hero {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/about-hero.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.consulting-hero {
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/consulting-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    margin-bottom: 0;
+    padding-top: 200px;
+}
+
+.consulting-hero h1 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.contact-hero {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/contact-hero.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.careers-hero {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/careers-hero.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.apply-hero {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/apply-hero.jpg');
+    background-size: cover;
+    background-position: center;
+}
